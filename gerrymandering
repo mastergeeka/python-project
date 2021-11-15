@@ -1,2 +1,5 @@
 import PIL
 import numpy as np
+
+def main(state):
+  print("Total eligible voters in" ,state,":", eligvot[state])
