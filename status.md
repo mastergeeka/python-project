@@ -2,15 +2,15 @@
 
 #### Your name
 
-TODO
+Rida Ayub
 
 #### Your section leader's name
 
-TODO
+Alex Thomer
 
 #### Project title
 
-TODO
+Gerrymandering
 
 ***
 
@@ -18,12 +18,12 @@ Short answers for the below questions suffice. If you want to alter your plan fo
 
 #### What have you done for your project so far?
 
-TODO
+We changed our project to creating a map that shows gerrymandering. So far we have gotten the district maps for the 50 states and edited the file with the respective parties and have editied out anything that is not Democrat or Republican. 
 
 #### What have you not done for your project yet?
 
-TODO
+We have to convert the district maps to black and white and write out the pseudocode for our program. 
 
 #### What problems, if any, have you encountered?
 
-TODO
+We are experiencing some errors with Github and trying to get everyone to be able to edit our files. 
