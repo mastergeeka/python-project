@@ -9,7 +9,7 @@ while x>2000 and y>2000:
 state = state.resize((x,y))
 start = state.filter(ImageFilter.FIND_EDGES)
 bands = start.split()
-onecolor = bands[2]
+onecolor = bands[0]
 newmap = onecolor.point(lambda x: 255 if x<100 else 0) #https://opensource.com/article/20/8/edit-images-python
 
 newmap.save("ALoutline.png")
