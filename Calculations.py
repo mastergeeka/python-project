@@ -94,17 +94,24 @@ def gerrytest(abc):
 def bias(defo):
     (x,y)= statewastecount(defo)  
     if gerrytest(defo) == False:
-        print("No Gerrymandering Detected")
+        print("No Gerrymandering Detected in",defo)
         if defo not in allclear:
             allclear.append(defo)
     
     elif x > y:
-        print("Detected Gerrymandering Bias Towards Republicans")
+        print("Detected Gerrymandering Bias Towards Republicans in",defo)
         repbias.append(defo)
     elif y < x:
-        print("Detected Gerrymandering Bias Towards Democrats")
+        print("Detected Gerrymandering Bias Towards Democrats in", defo)
         dembias.append(defo)
-        
+    
+#for stt in allstatess:
+    #if gerryposs(stt) == True:
+        #bias(stt)
+    #else:
+        #print("Not Enough Districts For Gerrymandering in", stt)
+    
+    
     
 
 
