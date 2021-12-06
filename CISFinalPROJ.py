@@ -15,12 +15,14 @@ HIpic = HIpic.resize((400,400))
 statedict ={}
 numdist= {}
 districtfile = open("DistrictData.csv","r")
+eligvoter = open("Voters.csv","r")
+
 totvotes=[]
 dlines = districtfile.readlines()
 allstates = []
+votpop = {}
 states = geopandas.read_file('../data/usa-states-census-2014.shp')
 states = states.to_crs("EPSG:3395")
-
 us_outline = states.boundary.plot(figsize=(18, 12), color="Gray")
 
 for line in dlines[1:]:
@@ -34,7 +36,13 @@ for line in dlines[1:]:
     statedict[name].append(int(row[3])) 
     totvotes.append(row[4])
 districtfile.close    
-
+VEP = eligvoter.readlines()
+for line in VEP[1:]:
+    row = line.strip().split(',')
+    place = row[0]
+    numb = row[1]
+    votpop[place]= int(numb)
+        
 for state in statedict:
     numdist[state]= int(len(statedict[state])/4)
 
@@ -165,7 +173,7 @@ statecolor = "yellow"
 
 while contin == "yes":
     select = (input("Which state's data do you want to look at?")).upper()
-    formatting= select[0]+(select[1:].lower())
+    formatting= (select.lower()).title()
     while select not in allstates:
         print("Not a valid state, Please enter a valid state")
         select = (input("Which state's data do you want to look at?")).upper()
@@ -190,6 +198,7 @@ while contin == "yes":
     else:
         (m,f,o) = statewastecount(select)
         print("Total Votes in",select,":",o)
+        print("State Voter Turnout",((o/votpop[formatting])*100),"%")
         print("Total Votes Wasted for Democrats:",m)
         print("Total Votes Wasted for Republicans:",f)
         print("Wasted Vote Percent Difference:",(effie(select)*100),"%")
