@@ -167,11 +167,10 @@ for stt in numdist:
         if stt not in white:
             white.append(stt)
 
-
-contin = "yes"    
-statecolor = "yellow"
+contin = "yes"
 
 while contin == "yes":
+    us_outline = states.boundary.plot(figsize=(18, 12), color="Gray")
     select = (input("Which state's data do you want to look at?")).upper()
     formatting= (select.lower()).title()
     while select not in allstates:
@@ -190,11 +189,11 @@ while contin == "yes":
         ALpic.show()
     if select =="HAWAII":
         HIpic.show()  
-    if select != "ALASKA" and select !="HAWAII":
-        states[states['NAME']==formatting].plot(ax=us_outline, color=statecolor) #https://jcutrer.com/python/learn-geopandas-plotting-usmaps
-        plot.show()
+    
     if numdist[select]<3:
+        (m,f,o) = statewastecount(select)
         print(("Not Enough Districts For Gerrymandering in", select))
+        print("State Voter Turnout",((o/votpop[formatting])*100),"%")
     else:
         (m,f,o) = statewastecount(select)
         print("Total Votes in",select,":",o)
@@ -203,7 +202,10 @@ while contin == "yes":
         print("Total Votes Wasted for Republicans:",f)
         print("Wasted Vote Percent Difference:",(effie(select)*100),"%")
         print(bias(select))
-            
+      
+    states[states['NAME']==formatting].plot(ax=us_outline, color=statecolor) #https://jcutrer.com/python/learn-geopandas-plotting-usmaps
+    plot.show()
+    plot.close()    
     contin = (input("Look at another state's data? Please enter yes or no.")).lower()
     plot.close()
     while contin != "yes" and contin != "no":
