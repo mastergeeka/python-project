@@ -4,10 +4,10 @@ import matplotlib.image as mpimg
 
 def picture():
   state = input("state?:")
-  if state == ALABAMA:
+  if state == "ALABAMA":
     img = mpimg.imread('ALoutline.jpeg')
     imgplot = plt.imshow(img)
-    plt.show()
+    imgplot.show()
   else:
   print('ok')
 picture()
