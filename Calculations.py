@@ -167,8 +167,17 @@ while contin == "yes":
         print("Total Votes Wasted for Democrats:",m)
         print("Total Votes Wasted for Republicans:",f)
         print("Wasted Vote Percent Difference:",(effie(select)*100),"%")
-        print(bias(select))
-            
+        print(bias(select)
+"""
+    if numdist[select]<3:
+        im = Image.open('USOutline.png')
+    else:
+        (m,f,o) = statewastecount(select)
+        im = Image.open('USOutline(blue)copy.png', m)
+        im = Image.open('USOutline(red)copy.png', f)
+        im = Image.oepn('USOutline(green)copy.png', o)
+        im.show()
+"""        
     contin = (input("Look at another state's data? Please enter yes or no.")).lower()
     while contin != "yes" and contin != "no":
         contin = (input("Invalid Input. Try again.")).lower()
