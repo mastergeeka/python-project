@@ -97,44 +97,81 @@ def gerrytest(abc):
     (x,y,z)= statewastecount(abc)
     
     differ = x - y
-    print(abc,x,y,differ)
+   
     if differ < 0:
         differ = differ * (-1)
      
         
     percent= float(differ/z)
-    print(abc,percent)
+   
     if percent >= 0.07:
         return True
     else:
         return False
-
+def effie(fgh):
+    (x,y,z)= statewastecount(fgh)
+    
+    differ = x - y
+   
+    if differ < 0:
+        differ = differ * (-1)
+     
+        
+    percent= float(differ/z)
+    return(percent)
 def bias(defo):
     (x,y,z)= statewastecount(defo) 
     what =""
     if gerrytest(defo) == False:
         what = ("No Gerrymandering Detected in", defo)
-        green.append(defo)
+        if defo not in green:
+            green.append(defo)
         
     
     else: 
         if x > y:
-            what = ("Detected Gerrymandering Bias Towards Republicans in", defo)
-            
+           what = ("Detected Gerrymandering Bias Towards Republicans in", defo)
+           if defo not in red:
+               red.append(defo)
         if y > x:
-            what = ("Detected Gerrymandering Bias Towards Democrats in",defo)
-           
+           what = ("Detected Gerrymandering Bias Towards Democrats in",defo)
+           if defo not in blue:
+               blue.append(defo)
     return(what)
 
 for stt in numdist:
     if gerryposs(stt) == True:
         ans = bias(stt)
     else:
-        ans = ("Not Enough Districts For Gerrymandering in", stt)   
-    
-select = (input("Which state's data do you want to look at?")).upper()
+        ans = ("Not Enough Districts For Gerrymandering in", stt) 
+        
+        if stt not in white:
+            white.append(stt)
 
-while select not in allstates:
-    print("Not a valid state, Please enter a valid state")
-    #select = (input("Which state's data do you want to look at?")).upper()
+contin = "yes"    
+    
+
+while contin == "yes":
+    select = (input("Which state's data do you want to look at?")).upper()
+
+    while select not in allstates:
+        print("Not a valid state, Please enter a valid state")
+        select = (input("Which state's data do you want to look at?")).upper()
+    print(select, " has ", numdist[select]," district(s).")
+
+    if numdist[select]<3:
+        print(("Not Enough Districts For Gerrymandering in", select))
+    else:
+        (m,f,o) = statewastecount(select)
+        print("Total Votes in",select,":",o)
+        print("Total Votes Wasted for Democrats:",m)
+        print("Total Votes Wasted for Republicans:",f)
+        print("Wasted Vote Percent Difference:",(effie(select)*100),"%")
+        print(bias(select))
+            
+    contin = (input("Look at another state's data? Please enter yes or no.")).lower()
+    while contin != "yes" and contin != "no":
+        contin = (input("Invalid Input. Try again.")).lower()
+print("Goodbye!")
+
 
