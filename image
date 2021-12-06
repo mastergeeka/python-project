@@ -1,0 +1,13 @@
+import matplotlib.pyploy as plt
+import matplotlib.image as mpimg
+
+
+def picture():
+  state = input("state?:")
+  if state == ALABAMA:
+    img = mpimg.imread('ALoutline.jpeg')
+    imgplot = plt.imshow(img)
+    plt.show()
+  else:
+  print('ok')
+picture()
