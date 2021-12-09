@@ -21,7 +21,7 @@ totvotes=[]
 dlines = districtfile.readlines()
 allstates = []
 votpop = {}
-states = geopandas.read_file('../data/usa-states-census-2014.shp')
+states = geopandas.read_file('../data/usa-states-census-2014.shp')#https://jcutrer.com/python/learn-geopandas-plotting-usmaps
 states = states.to_crs("EPSG:3395")
 us_outline = states.boundary.plot(figsize=(18, 12), color="Gray")
 
